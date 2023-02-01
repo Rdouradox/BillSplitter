@@ -10,44 +10,42 @@ import { Filter } from "../../components/Filter";
 
 import { useState } from "react";
 import { FlatList } from "react-native";
+import { useRoute } from "@react-navigation/native";
+
+type RouteParams = {
+  group: string;
+};
 
 export function Players() {
-  const [players, setPlayers] = useState([])
+  const [players, setPlayers] = useState([]);
+
+  const route = useRoute();
+
+  const { group } = route.params as RouteParams;
+
   return (
     <Container>
       <Header showBackButton />
 
-      <Highlight 
-        title="Divide ae"
-        subtitle="adicione a galera e organize o role"
-      />
+      <Highlight title={group} subtitle="adicione a galera e organize o role" />
 
-<Form>
-        <Input 
+      <Form>
+        <Input
           placeholder="Nome da pessoa"
           // AutoCorrect para nao corrigir escrita (ex: apelido)
           autoCorrect={false}
         />
 
-        <ButtonIcon 
-          icon="add" 
-        />
+        <ButtonIcon icon="add" />
       </Form>
-      <FlatList 
+      <FlatList
         data={players}
-        keyExtractor={item => item}
+        keyExtractor={(item) => item}
         renderItem={({ item }) => (
-          <PlayerCard 
-            name={item} 
-            onRemove={() => {}}
-          />
+          <PlayerCard name={item} onRemove={() => {}} />
         )}
       />
-         <Button 
-        title="Remover Turma"
-        type="SECONDARY"
-      />
-      
+      <Button title="Remover Turma" type="SECONDARY" />
     </Container>
-  )
+  );
 }
