@@ -39,11 +39,7 @@ export function Groups() {
       <Header />
       <Highlight title="Grupos" subtitle="Avance para comecar o role!" />
 
-      <GroupCard
-        title="Crie seu grupo" /**** */
-        plus="+"
-        onPress={handleNewGroup}
-      />
+      <GroupCard title="Crie seu grupo" plus="+" onPress={handleNewGroup} />
 
       <FlatList
         data={groups}
